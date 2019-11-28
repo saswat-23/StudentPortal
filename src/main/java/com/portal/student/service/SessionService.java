@@ -7,19 +7,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.portal.student.entity.Student;
+import com.portal.student.entity.UserProfile;
 import com.portal.student.model.LoginResponse;
-import com.portal.student.respository.SessionRepository;
+import com.portal.student.respository.AdminRepository;
+import com.portal.student.respository.StudentRepository;
 
 @Service
 public class SessionService {
 	
 	@Autowired
-	SessionRepository repository;
+	StudentRepository studentRepo;
+	
+	@Autowired
+	AdminRepository adminRepo;
+	
 	LoginResponse loginResponse;
 	
 	public LoginResponse validateLogin(Student student) {
 		System.out.println("Student Details received: "+student);
-		List<Student> studList = repository.findByUsernameAndPassword(student.getUsername(), student.getPassword());
+		List<Student> studList = studentRepo.findByUsernameAndPassword(student.getUsername(), student.getPassword());
 		System.out.println(studList);
 		student = studList.size() > 0? studList.get(0):null;
 		
@@ -40,6 +46,36 @@ public class SessionService {
 		}
 		
 		return loginResponse;
+	}
+
+	public LoginResponse validateAdminLogin(UserProfile admin) {
+		System.out.println("Admin Details received: "+admin);
+		List<UserProfile> adminList = adminRepo.findByUserIdAndUserSeckey(admin.getUserId(), admin.getUserSeckey());
+		System.out.println(adminList);
+		admin = adminList.size() > 0? adminList.get(0):null;
+		
+		loginResponse = new LoginResponse();
+		
+		if(admin == null) {
+			loginResponse.setValid(false);
+			loginResponse.setMessage("Invalid login credentials!");
+			loginResponse.setStatus(HttpStatus.UNAUTHORIZED);
+		}
+		else
+		{
+			loginResponse.setValid(true);
+			loginResponse.setFname(admin.getUserName().split(" ")[0]);
+			loginResponse.setLname(admin.getUserName().split(" ")[1]);
+			loginResponse.setUsername(admin.getUserName());
+			loginResponse.setStatus(HttpStatus.ACCEPTED);
+		}
+		
+		return loginResponse;
+	}
+
+	public List<Student> getStudentList() {
+		List<Student> studList = (List<Student>) studentRepo.findAll();
+		return studList;
 	}
 	
 }

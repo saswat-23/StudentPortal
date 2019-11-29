@@ -22,6 +22,8 @@ public class Student {
 	private String fname;
 	private String lname;
 	private String password;
+	private String email;
+	private long phone;
 	
 	public Student(String username, String password) {
 		this.username = username;

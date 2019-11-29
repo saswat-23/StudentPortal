@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portal.student.entity.Student;
-import com.portal.student.entity.UserProfile;
+import com.portal.student.entity.Admin;
 import com.portal.student.model.LoginRequest;
 import com.portal.student.model.LoginResponse;
 import com.portal.student.service.SessionService;
@@ -30,7 +30,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-		UserProfile admin = new UserProfile(request.getUsername(), request.getPassword());
+		Admin admin = new Admin(request.getUsername(), request.getPassword());
 		LoginResponse response = service.validateAdminLogin(admin);
 		return new ResponseEntity<LoginResponse>(response, response.getStatus());
 	}

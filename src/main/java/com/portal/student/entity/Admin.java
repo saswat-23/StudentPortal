@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 @Entity
-@Table(name="user_profile")
+@Table(name="admin")
 @Data @NoArgsConstructor
-public class UserProfile{
+public class Admin{
 
   @Id
   @Column(name="slno")
@@ -42,7 +42,7 @@ public class UserProfile{
   @Column(name="updt_at" )
   Timestamp updtAt;
 
-  public UserProfile(String userId, String userSeckey) {
+  public Admin(String userId, String userSeckey) {
 	this.userId = userId;
 	this.userSeckey = userSeckey;
   }

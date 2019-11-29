@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.portal.student.entity.Student;
-import com.portal.student.entity.UserProfile;
+import com.portal.student.entity.Admin;
 import com.portal.student.model.LoginResponse;
 import com.portal.student.respository.AdminRepository;
 import com.portal.student.respository.StudentRepository;
@@ -48,9 +48,9 @@ public class SessionService {
 		return loginResponse;
 	}
 
-	public LoginResponse validateAdminLogin(UserProfile admin) {
+	public LoginResponse validateAdminLogin(Admin admin) {
 		System.out.println("Admin Details received: "+admin);
-		List<UserProfile> adminList = adminRepo.findByUserIdAndUserSeckey(admin.getUserId(), admin.getUserSeckey());
+		List<Admin> adminList = adminRepo.findByUserIdAndUserSeckey(admin.getUserId(), admin.getUserSeckey());
 		System.out.println(adminList);
 		admin = adminList.size() > 0? adminList.get(0):null;
 		

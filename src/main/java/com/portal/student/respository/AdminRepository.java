@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.portal.student.entity.UserProfile;
+import com.portal.student.entity.Admin;
 
-public interface AdminRepository extends CrudRepository<UserProfile, String> {
-	 public List<UserProfile> findByUserIdAndUserSeckey(String userId, String userSeckey);
+public interface AdminRepository extends CrudRepository<Admin, String> {
+	 public List<Admin> findByUserIdAndUserSeckey(String userId, String userSeckey);
 }

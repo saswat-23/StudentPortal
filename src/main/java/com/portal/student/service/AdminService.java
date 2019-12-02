@@ -29,7 +29,6 @@ public class AdminService {
 	}
 
 	public void deleteStudent(int id) {
-		// TODO Auto-generated method stub
 		//studentRepo.deleteById(id);
 	}
 	

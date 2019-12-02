@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portal.student.entity.Student;
+import com.portal.student.exception.UserNotFoundException;
 import com.portal.student.entity.Admin;
 import com.portal.student.model.LoginRequest;
 import com.portal.student.model.LoginResponse;
@@ -53,12 +54,17 @@ public class AdminController {
 	
 	@RequestMapping(value = "/manage/student/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateStudent(@RequestBody Student student, @PathVariable("id") int id) {
+		
+		if(id==0) {
+			throw new UserNotFoundException();
+		}
+		
 		adminService.saveStudent(student);
 		return new ResponseEntity<String>("Details updated successfully!", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/manage/student/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> updateStudent(@PathVariable("id") int id) {
+	public ResponseEntity<?> removeStudent(@PathVariable("id") int id) {
 		adminService.deleteStudent(id);
 		return new ResponseEntity<String>("Student deleted successfully!", HttpStatus.OK);
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 
 import com.portal.student.entity.Student;
 import com.portal.student.entity.Admin;
@@ -73,9 +74,4 @@ public class SessionService {
 		return loginResponse;
 	}
 
-	public List<Student> getStudentList() {
-		List<Student> studList = (List<Student>) studentRepo.findAll();
-		return studList;
-	}
-	
 }

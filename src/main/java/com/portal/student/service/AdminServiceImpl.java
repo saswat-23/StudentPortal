@@ -10,7 +10,7 @@ import com.portal.student.respository.AdminRepository;
 import com.portal.student.respository.StudentRepository;
 
 @Service
-public class AdminService {
+public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	StudentRepository studentRepo;
@@ -18,16 +18,19 @@ public class AdminService {
 	@Autowired
 	AdminRepository adminRepo;
 	
+	@Override
 	public List<Student> getStudentList() {
 		List<Student> studList = (List<Student>) studentRepo.findAll();
 		return studList;
 	}
 
+	@Override
 	public void saveStudent(Student student) {
 
 		studentRepo.save(student);	
 	}
 
+	@Override
 	public void deleteStudent(int id) {
 		//studentRepo.deleteById(id);
 	}

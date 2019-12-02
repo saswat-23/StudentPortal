@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portal.student.entity.Admin;
 import com.portal.student.entity.Student;
 import com.portal.student.exception.UserNotFoundException;
-import com.portal.student.entity.Admin;
 import com.portal.student.model.LoginRequest;
 import com.portal.student.model.LoginResponse;
 import com.portal.student.service.AdminService;

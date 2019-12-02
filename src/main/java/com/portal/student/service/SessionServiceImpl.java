@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
-import com.portal.student.entity.Student;
 import com.portal.student.entity.Admin;
+import com.portal.student.entity.Student;
 import com.portal.student.model.LoginResponse;
 import com.portal.student.respository.AdminRepository;
 import com.portal.student.respository.StudentRepository;
 
 @Service
-public class SessionService {
+public class SessionServiceImpl implements SessionService {
 	
 	@Autowired
 	StudentRepository studentRepo;
@@ -24,6 +23,7 @@ public class SessionService {
 	
 	LoginResponse loginResponse;
 	
+	@Override
 	public LoginResponse validateLogin(Student student) {
 		System.out.println("Student Details received: "+student);
 		List<Student> studList = studentRepo.findByUsernameAndPassword(student.getUsername(), student.getPassword());
@@ -49,6 +49,7 @@ public class SessionService {
 		return loginResponse;
 	}
 
+	@Override
 	public LoginResponse validateAdminLogin(Admin admin) {
 		System.out.println("Admin Details received: "+admin);
 		List<Admin> adminList = adminRepo.findByUserIdAndUserSeckey(admin.getUserId(), admin.getUserSeckey());

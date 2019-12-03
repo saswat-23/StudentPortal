@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,30 +33,30 @@ public class AdminController {
 	AdminService adminService;
 	
 
-	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
+	@GetMapping(value = { "", "/" })
 	public String home() {
 		return "Welcome to Admin homepage";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
+	@PostMapping(value = "/login", consumes = "application/json")
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 		Admin admin = new Admin(request.getUsername(), request.getPassword());
 		LoginResponse response = sessionService.validateAdminLogin(admin);
 		return new ResponseEntity<LoginResponse>(response, response.getStatus());
 	}
 
-	@RequestMapping(value = "/manage/students", method = RequestMethod.GET, produces = "application/json")
+	@GetMapping(value = "/manage/students", produces = "application/json")
 	public ResponseEntity<List<Student>> getStudentList() {
 		return new ResponseEntity<List<Student>>(adminService.getStudentList(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/manage/student", method = RequestMethod.POST)
+	@PostMapping(value = "/manage/student")
 	public ResponseEntity<?> addStudent(@RequestBody Student student) {
 		adminService.saveStudent(student);
 		return new ResponseEntity<Object>("Student data added.", HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/manage/student/{id}", method = RequestMethod.PUT)
+	@PutMapping(value = "/manage/student/{id}")
 	public ResponseEntity<?> updateStudent(@RequestBody Student student, @PathVariable("id") int id) {
 		
 		if(id==0) {
@@ -63,7 +67,7 @@ public class AdminController {
 		return new ResponseEntity<String>("Details updated successfully!", HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/manage/student/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/manage/student/{id}")
 	public ResponseEntity<?> removeStudent(@PathVariable("id") int id) {
 		adminService.deleteStudent(id);
 		return new ResponseEntity<String>("Student deleted successfully!", HttpStatus.OK);

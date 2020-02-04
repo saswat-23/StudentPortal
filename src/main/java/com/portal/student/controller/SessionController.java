@@ -22,9 +22,9 @@ public class SessionController {
 	@Autowired
 	SessionService service;
 
-	@GetMapping(value = "/")
+	@GetMapping(value = {"","/"})
 	public String home() {
-		return "Welcome to homepage";
+		return "Welcome to session homepage";
 	}
 
 	@PostMapping(value = "/login", consumes = "application/json")

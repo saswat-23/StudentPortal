@@ -20,8 +20,11 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public List<Student> getStudentList() {
-		List<Student> studList = (List<Student>) studentRepo.findAll();
-		return studList;
+//		List<Student> studList = (List<Student>) studentRepo.findAll();
+//		return studList;
+		return
+				studentRepo.getAllStudentDataByStatusAndYop("active", 2010);
+//		return studentRepo.findByStatus("active");
 	}
 
 	@Override

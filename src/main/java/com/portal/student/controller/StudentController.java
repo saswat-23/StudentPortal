@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StudentController {
 	
-	@GetMapping(value = {"/",""})
+	//@GetMapping(value = {"/",""})
 	public String home() {
 		return "Welcome to Student Portal!";
 	}

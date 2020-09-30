@@ -1,12 +1,8 @@
 package com.portal.student.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 public class LoginResponse {
-	
-	Logger logger = LoggerFactory.getLogger(LoginResponse.class);
 	
 	boolean isValid;
 	String message;

@@ -1,5 +1,6 @@
 package com.portal.student.security;
 
+/*
 public enum AppUserPermission {
 	STUDENT_READ("student:read"),
 	STUDENT_WRITE("student_write"),
@@ -14,3 +15,4 @@ public enum AppUserPermission {
 	
 	 
 }
+*/

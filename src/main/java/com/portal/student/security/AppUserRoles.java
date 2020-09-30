@@ -1,5 +1,6 @@
 package com.portal.student.security;
 
-public enum AppUserRoles {
+/*public enum AppUserRoles {
 	STUDENT, ADMIN
 }
+*/

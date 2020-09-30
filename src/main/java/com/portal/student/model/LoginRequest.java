@@ -1,8 +1,13 @@
 package com.portal.student.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LoginRequest {
 	
-	private String username;
+	Logger logger = LoggerFactory.getLogger(LoginRequest.class);
+
+			private String username;
 	private String password;
 	private String userType;
 	public String getUsername() {

@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Student.getAllStudentData", query = "select * from student where", resultClass = Student.class)
 	,
@@ -16,6 +19,8 @@ import javax.persistence.NamedNativeQuery;
 @Entity
 public class Student {
 
+	Logger logger = LoggerFactory.getLogger(Student.class);
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -7,9 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @NamedNativeQueries({
 	@NamedNativeQuery(name = "Student.getAllStudentData", query = "select * from student where", resultClass = Student.class)
 	,
@@ -19,8 +16,6 @@ import org.slf4j.LoggerFactory;
 @Entity
 public class Student {
 
-	Logger logger = LoggerFactory.getLogger(Student.class);
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -113,6 +108,11 @@ public class Student {
 	public void setYop(int yop) {
 		this.yop = yop;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", username=" + username + ", fname=" + fname + ", lname=" + lname + ", password="
+				+ password + ", email=" + email + ", phone=" + phone + ", status=" + status + ", yop=" + yop + "]";
+	}
 	
 }

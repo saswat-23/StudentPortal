@@ -9,15 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Entity
 @Table(name = "admin")
 public class Admin {
 
-	Logger logger = LoggerFactory.getLogger(Admin.class);
-	
 	@Id
 	@Column(name = "slno")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

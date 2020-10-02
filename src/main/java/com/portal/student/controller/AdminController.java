@@ -30,7 +30,7 @@ import com.portal.student.service.SessionService;
 @RequestMapping(value = "/admin")
 public class AdminController {
 
-	Logger logger = LoggerFactory.getLogger(AdminController.class);
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	SessionService sessionService;
@@ -52,7 +52,10 @@ public class AdminController {
 
 	@GetMapping(value = "/manage/students", produces = "application/json")
 	public ResponseEntity<List<Student>> getStudentList() {
-		return new ResponseEntity<List<Student>>(adminService.getStudentList(), HttpStatus.OK);
+		
+		List<Student> studentList = adminService.getStudentList();
+		logger.debug("The List is: "+studentList);
+		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/manage/student")

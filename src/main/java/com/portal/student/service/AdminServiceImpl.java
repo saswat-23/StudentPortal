@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Student> getStudentList() {
 		List<Student> studList = (List<Student>) studentRepo.findAll();
-		logger.info("StudentList is: "+studList);
+		logger.debug("StudentList is: "+studList);
 		return studList;
 //		return (List<Student>) studentRepo.findAll();
 				//studentRepo.getAllStudentDataByStatusAndYop("active", 2010);
